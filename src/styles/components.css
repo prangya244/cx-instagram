@@ -1,0 +1,242 @@
+/* Layout Components */
+.container {
+    @apply max-w-6xl mx-auto px-4;
+  }
+  
+  /* Navigation Components */
+  .nav-menu {
+    @apply flex flex-col space-y-4;
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-2 text-lg hover:text-purple-600 hover:underline cursor-pointer;
+  }
+  
+  .nav-icon {
+    @apply w-6 h-6;
+  }
+  
+  /* Button Components */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+  
+  /* Card Components */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+  
+  .card-header {
+    @apply p-4 border-b border-gray-200;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+  
+  /* Input Components */
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  /* Avatar Components */
+  .avatar {
+    @apply rounded-full object-cover;
+  }
+  
+  .avatar-sm {
+    @apply w-8 h-8;
+  }
+  
+  .avatar-md {
+    @apply w-12 h-12;
+  }
+  
+  .avatar-lg {
+    @apply w-16 h-16;
+  }
+  
+  /* List Components */
+  .list-container {
+    @apply divide-y divide-gray-200;
+  }
+  
+  .list-item {
+    @apply py-2 flex items-center;
+  }
+  
+  /* Story Components */
+  .story {
+    @apply flex flex-col items-center;
+  }
+  
+  .story-avatar {
+    @apply w-16 h-16 rounded-full p-[2px] border-2 border-pink-500;
+  }
+  
+  .story-username {
+    @apply text-xs mt-1 truncate w-16 text-center;
+  }
+  
+  /* Badge Components */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-red {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .badge-blue {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  /* Icon Components */
+  .icon-button {
+    @apply p-2 rounded-full hover:bg-gray-100 transition-colors;
+  }
+  
+  /* Header Components */
+  .main-header {
+    @apply text-4xl font-bold mb-8;
+  }
+  
+  /* Sidebar Components */
+  .sidebar {
+    @apply w-64 fixed h-full bg-white border-r border-gray-200;
+  }
+  
+  /* Link Components */
+  .nav-link {
+    @apply text-gray-700 hover:text-purple-600 hover:underline;
+  }
+  
+  .active-link {
+    @apply font-semibold text-purple-600;
+  }
+  
+  /* Message Components */
+  .message-item {
+    @apply flex items-center gap-3 py-2 px-4 hover:bg-gray-50 cursor-pointer;
+  }
+  
+  .message-content {
+    @apply flex-1 min-w-0;
+  }
+  
+  .message-username {
+    @apply font-medium text-sm truncate;
+  }
+  
+  .message-text {
+    @apply text-sm text-gray-500 truncate;
+  }
+  
+  /* Loading States */
+  .loading {
+    @apply animate-pulse bg-gray-200;
+  }
+  
+  /* Notification Components */
+  .notification-item {
+    @apply flex items-start gap-3 py-3 px-4 hover:bg-gray-50;
+  }
+  
+  .notification-content {
+    @apply flex-1 text-sm;
+  }
+  
+  /* Profile Components */
+  .profile-header {
+    @apply flex items-center gap-4;
+  }
+  
+  .profile-stats {
+    @apply flex gap-8 text-center;
+  }
+  
+  /* Grid Components */
+  .grid-post {
+    @apply aspect-square object-cover;
+  }
+  
+  /* Search Components */
+  .search-input {
+    @apply w-full px-4 py-2 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  /* Story Highlights */
+  .highlight {
+    @apply flex flex-col items-center;
+  }
+  
+  .highlight-circle {
+    @apply w-16 h-16 rounded-full border-2 border-gray-300 p-[2px];
+  }
+  
+  /* Post Components */
+  .post-actions {
+    @apply flex justify-between items-center py-2;
+  }
+  
+  .post-likes {
+    @apply text-sm font-medium;
+  }
+  
+  /* Comment Components */
+  .comment {
+    @apply flex gap-2 text-sm;
+  }
+  
+  .comment-username {
+    @apply font-medium;
+  }
+  
+  /* Modal Components */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
+  }
+  
+  .modal-content {
+    @apply bg-white rounded-lg max-w-lg w-full mx-4;
+  }
+  
+  /* Utility Classes */
+  .truncate-2-lines {
+    @apply overflow-hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  .aspect-square {
+    @apply relative pb-[100%];
+  }
+  
+  .absolute-fill {
+    @apply absolute inset-0 w-full h-full;
+  }
+  /* Hide scrollbar for all browsers */
+.hide-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
+  /* Responsive Design for Stories */
+  @media (max-width: 768px) {
+    .stories-container {
+      gap: 8px;
+    }
+  }
+  

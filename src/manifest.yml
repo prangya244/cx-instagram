@@ -1,0 +1,7 @@
+---
+applications:
+  - name: cx-instagram
+    memory: 512M
+    instances: 1
+    buildpack: staticfile_buildpack
+    path: build
