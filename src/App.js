@@ -1,46 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import Sidebar from './components/Layout/Sidebar';
 import Stories from './components/Feed/Stories';
 import Post from './components/Feed/Post';
-import SponsoredPost from './components/Feed/SponsoredPost';
 import './styles/components.css';
 import './styles/global.css';
+import SponsoredPost from './components/Feed/SponsoredPost';
 
 const App = () => {
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      const url = 'https://auth.emarsys.net/oauth2/token ';
-const clientId = '9867aa00-85e3-4268-a52d-505c592e7832'; 
-const clientSecret = '.bs-wOUMnJL3BL0GOKNX1gt5m4'; 
-
-const auth = btoa(`${clientId}:${clientSecret}`);
-
-      const headers = {
-        Authorization: `Basic ${auth}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
-      };
-
-      const data = qs.stringify({
-        grant_type: 'client_credentials',
-      });
-
-      try {
-        const response = await axios.post(url, data, { headers });
-        console.log('Token:', response.data.access_token);
-        setToken(response.data.access_token);
-      } catch (error) {
-        console.error('Error fetching token:', error.response ? error.response.data : error.message);
-      }
-    };
-
-    fetchToken();
-  }, []);
-
   const posts = [
     {
       id: 1,
@@ -49,13 +17,41 @@ const auth = btoa(`${clientId}:${clientSecret}`);
       image: '../images/digitalmarketing.jpg',
       caption: 'Original audio',
       likes: 1234,
-      comments: 56,
+      comments: 56
     },
     {
       id: 2,
       type: 'sponsored',
     },
   ];
+
+  // Function to fetch the token 
+  // const fetchToken = async () => {
+  //   const url = "https://atoken";
+  //   const clientId = "12345";
+  //   const clientSecret = "abcd";
+
+  //   const auth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+
+  //   const headers = {
+  //     Authorization: `Basic ${auth}`,
+  //     "Content-Type": "application/x-www-form-urlencoded",
+  //     Accept: "application/json",
+  //   };
+
+  //   const data = qs.stringify({
+  //     grant_type: "client_credentials",
+  //   });
+
+  //   try {
+  //     const response = await axios.post(url, data, { headers });
+  //     console.log("Response Data:", response.data);
+  //   } catch (error) {
+  //     console.error("Error:", error.response ? error.response.data : error.message);
+  //   }
+  // };
+
+  // fetchToken();
 
   return (
     <div className="bg-white min-h-screen">
@@ -73,17 +69,11 @@ const auth = btoa(`${clientId}:${clientSecret}`);
         <main className="flex-1 ml-60">
           <div className="max-w-[630px] mx-auto pt-8 px-4">
             <Stories />
-            {token ? (
-              posts.map((post, index) =>
-                post.type === 'sponsored' ? (
-                  <SponsoredPost key={`sponsored-${index}`} />
-                ) : (
-                  <Post key={post.id} post={post} />
-                )
-              )
-            ) : (
-              <p>Loading...</p>
-            )}
+            {posts.map((post, index) => (
+              post.type === 'sponsored' ? 
+                <SponsoredPost key={`sponsored-${index}`} /> :
+                <Post key={post.id} post={post} />
+            ))}
           </div>
         </main>
 
@@ -92,7 +82,11 @@ const auth = btoa(`${clientId}:${clientSecret}`);
           <div className="fixed">
             {/* Profile Section */}
             <div className="flex items-center mb-6">
-              <img src="../images/dog.jpg" alt="Profile" className="w-12 h-12 rounded-full" />
+              <img
+                src="../images/dog.jpg"
+                alt="Profile"
+                className="w-12 h-12 rounded-full"
+              />
               <div className="ml-4">
                 <p className="text-sm font-semibold">Sara J</p>
                 <p className="text-sm text-gray-500">Sara Jones</p>
@@ -106,11 +100,15 @@ const auth = btoa(`${clientId}:${clientSecret}`);
                 <span className="text-sm font-semibold text-gray-500">Suggested for you</span>
                 <button className="text-xs font-semibold">See All</button>
               </div>
-
+              
               {/* Suggested Users */}
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="flex items-center py-2">
-                  <img src="../images/dog.jpg" alt="Suggestion" className="w-8 h-8 rounded-full" />
+                  <img
+                    src="../images/dog.jpg"
+                    alt="Suggestion"
+                    className="w-8 h-8 rounded-full"
+                  />
                   <div className="ml-3 flex-1">
                     <p className="text-sm font-semibold">suggested_user_{i}</p>
                     <p className="text-xs text-gray-500">Followed by user_{i}</p>
