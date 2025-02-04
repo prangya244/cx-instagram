@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import Sidebar from './components/Layout/Sidebar';
@@ -24,6 +24,25 @@ const App = () => {
       type: 'sponsored',
     },
   ];
+
+  const [showSponsored, setShowSponsored] = useState(false);
+
+  // Function to fetch segment data from API
+  const fetchSegmentData = async () => {
+    if (fetchSegmentData.called) return; // Prevent duplicate calls
+    fetchSegmentData.called = true;
+
+    try {
+      const response = await axios.get('http://localhost:5000/api/auth/fetch-segments');
+      setShowSponsored(response.data.replyCode === 0 && response.data.data === true);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSegmentData();
+  }, []);
 
   // Function to fetch the token 
   // const fetchToken = async () => {
@@ -70,10 +89,13 @@ const App = () => {
           <div className="max-w-[630px] mx-auto pt-8 px-4">
             <Stories />
             {posts.map((post, index) => (
-              post.type === 'sponsored' ? 
-                <SponsoredPost key={`sponsored-${index}`} /> :
+              post.type === 'sponsored' ? (
+                showSponsored ? <SponsoredPost key={`sponsored-${index}`} /> : null
+              ) : (
                 <Post key={post.id} post={post} />
+              )
             ))}
+
           </div>
         </main>
 
@@ -100,7 +122,7 @@ const App = () => {
                 <span className="text-sm font-semibold text-gray-500">Suggested for you</span>
                 <button className="text-xs font-semibold">See All</button>
               </div>
-              
+
               {/* Suggested Users */}
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="flex items-center py-2">
