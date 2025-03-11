@@ -2,6 +2,7 @@
 applications:
   - name: cx-instagram
     memory: 512M
+    disk_quota: 512M
     instances: 1
     buildpack: staticfile_buildpack
     path: build

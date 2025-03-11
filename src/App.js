@@ -13,11 +13,11 @@ const App = () => {
   const posts = [
     {
       id: 1,
-      username: 'cxDigitalMarketing',
-      avatar: '../images/digitalmarketing.jpg',
-      image: '../images/digitalmarketing.jpg',
-      caption: 'Original audio',
-      likes: 1234,
+      username: 'BestRun',
+      avatar: '../images/logo-black 3.png',
+      image: '../images/Insta2.png',
+      caption: 'Enables an exclusive and immersive end-to-end journey into the future',
+      likes: "Liked by SAP and 28.233 others" ,
       comments: 56
     },
     {
@@ -61,7 +61,7 @@ const App = () => {
     fetchSegmentData.called = true;
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/fetch-segments?email=${email}`);
+      const response = await axios.get(`https://emarsys-node-api.cfapps.eu10-004.hana.ondemand.com/api/auth/fetch-segments?email=${email}`);
       setShowSponsored(response.data.replyCode === 0 && response.data.data === true);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -107,16 +107,21 @@ const App = () => {
       {isLoggedIn ? (
         <div className="flex">
           {/* Left Sidebar */}
-          <div className="fixed left-0 top-0 h-full w-60 border-r border-gray-200 z-50 bg-white">
+          {/* <div className="fixed left-0 top-0 h-full w-60 border-r border-gray-200 z-50 bg-white">
             <div className="pt-8 px-6">
               <h1 className="text-xl font-serif mb-10">Instagram</h1>
               <Sidebar />
             </div>
-          </div>
+          </div> */}
 
           {/* Main Content */}
           <main className="flex-1 ml-60">
             <div className="max-w-[630px] mx-auto pt-8 px-4">
+            <img
+                      src="../images/Instagram-Logo-No-Background.png"
+                      alt="Instagram"
+                      className='max-w-[200px] px-4'
+                    />
               <Stories />
               {posts.map((post, index) => (
                 post.type === 'sponsored' ? (
@@ -132,9 +137,9 @@ const App = () => {
           <div className="hidden lg:block w-[340px] pl-8 pt-8 pr-4">
             <div className="fixed">
               {/* Profile Section */}
-              <div className="flex items-center mb-6">
+              {/* <div className="flex items-center mb-6">
                 <img
-                  src="../images/dog.jpg"
+                  src="../images/b4036c2b-e770-48bc-bd29-d61d2d2212b1.png"
                   alt="Profile"
                   className="w-12 h-12 rounded-full"
                 />
@@ -143,17 +148,17 @@ const App = () => {
                   <p className="text-sm text-gray-500">{fullName}</p>
                 </div>
                 <button className="ml-auto text-xs font-semibold text-blue-500">Switch</button>
-              </div>
+              </div> */}
 
               {/* Suggestions Section */}
-              <div>
+              {/* <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-sm font-semibold text-gray-500">Suggested for you</span>
                   <button className="text-xs font-semibold">See All</button>
-                </div>
+                </div> */}
 
                 {/* Suggested Users */}
-                {[1, 2, 3, 4, 5].map((i) => (
+                {/* {[1, 2, 3, 4, 5].map((i) => (
                   <div key={i} className="flex items-center py-2">
                     <img
                       src="../images/dog.jpg"
@@ -166,8 +171,8 @@ const App = () => {
                     </div>
                     <button className="text-xs font-semibold text-blue-500">Follow</button>
                   </div>
-                ))}
-              </div>
+                ))} */}
+              {/* </div> */}
             </div>
           </div>
         </div>
