@@ -125,7 +125,7 @@ const App = () => {
               <Stories />
               {posts.map((post, index) => (
                 post.type === 'sponsored' ? (
-                  showSponsored ? <SponsoredPost key={`sponsored-${index}`} /> : null
+                  showSponsored ? <SponsoredPost postId={index} email={email} /> : null
                 ) : (
                   <Post key={post.id} post={post} />
                 )
