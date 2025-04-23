@@ -43,7 +43,7 @@ const SponsoredPost = ({ postId, email }) => {
         POST: String(postId),
         LIKES: updatedLikes,
         NOACTION: false,
-        CUST1: 'NA',
+        CUST1: comments?comments:'NA',
         CUST2: 'NA',
         CUST3: 'NA',
       };
