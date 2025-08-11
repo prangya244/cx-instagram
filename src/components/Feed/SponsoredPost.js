@@ -10,10 +10,14 @@ const SponsoredPost = ({ postId, email }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
+  const url = 'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog';
+
+
   const fetchLikes = async () => {
     try {
       const response = await axios.get(
-        `https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS?$filter=POST eq '${postId}'`
+        //  `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts?$filter=POST eq '${postId}'`
+       `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts?$filter=POST eq '${postId}'`
       );
       const totalLikes = response.data.value.reduce((sum, item) => sum + item.LIKES, 0);
       const existingComment = response.data.value.find(item => item.CUST1);
@@ -45,20 +49,23 @@ const SponsoredPost = ({ postId, email }) => {
         NOACTION: false,
         CUST1: comments.comment,
         CUST2: 'NA',
-        CUST3: 'NA',
+        CUST3: 'NA'
       };
 
       if (responseId) {
         await axios.patch(
-          `https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS(ID=${responseId})`,
+          // `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${responseId})`,
+          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${responseId})`,
           payload,
           { headers: { 'Content-Type': 'application/json' } }
         );
       } else {
         const newId = uuidv4();
         await axios.post(
-          'https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS',
-          { ID: newId, ...payload },
+          // 'https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
+        'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
+          // { ID: newId, ...payload },
+          payload ,
           { headers: { 'Content-Type': 'application/json' } }
         );
         setResponseId(newId);
@@ -71,14 +78,13 @@ const SponsoredPost = ({ postId, email }) => {
     }
   };
 
-
   const handleAddComment = async () => {
     if (!newComment.trim()) return;
   
     try {
       // Fetch existing records for the same POST
       const res = await axios.get(
-        `https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS?$filter=POST eq '${postId}'`
+        `${url}/InstagramPosts?$filter=POST eq '${postId}'`
       );
   
       // Check if there’s an entry with CUST1 = 'NA'
@@ -87,7 +93,8 @@ const SponsoredPost = ({ postId, email }) => {
       if (existing) {
         // Update CUST1 with new comment
         await axios.patch(
-          `https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS(ID=${existing.ID})`,
+          // `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${existing.ID})`,
+          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${existing.ID})`,
           { CUST1: newComment },
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -107,7 +114,8 @@ const SponsoredPost = ({ postId, email }) => {
         };
   
         await axios.post(
-          'https://345ceb72trial-dev-example-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/POSTS',
+          // 'https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
+          'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
           payload,
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -141,13 +149,13 @@ const SponsoredPost = ({ postId, email }) => {
       {/* Post Image */}
       <div className="relative pb-[100%]">
         <img
-          src="../images/adv.png"
+          src="../images/adv.jpg"
           alt="Best run"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
         <div className="absolute bottom-0 left-0 w-full bg-[#001f3f] text-white text-start py-3 text-sm font-semibold">
           <a
-            href="https://fashion-us.cu2qdtboy0-public1-p16-public.model-t.cc.commerce.ondemand.com/fashion-us/en/c/RF2000/women"
+            href="https://fashion-us.cu2qdtboy0-public1-p16-public.model-t.cc.commerce.ondemand.com/fashion-us/en/p/MR516185/mountain-heavy-jacket-b"
             className="block px-4"
             target="_blank"
             rel="noopener noreferrer"
