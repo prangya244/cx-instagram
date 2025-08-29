@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: cx-instagram
+  - name: tiktok
     memory: 512M
     disk_quota: 512M
     instances: 1

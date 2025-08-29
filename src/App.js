@@ -68,11 +68,11 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    if (email) {
-      fetchSegmentData();
-    }
-  }, [email]);
+  // useEffect(() => {
+  //   if (email) {
+  //     fetchSegmentData();
+  //   }
+  // }, [email]);
   // Function to fetch the token (commented out for now)
   // const fetchToken = async () => {
   //   const url = "https://atoken";
@@ -125,7 +125,7 @@ const App = () => {
               <Stories />
               {posts.map((post, index) => (
                 post.type === 'sponsored' ? (
-                  showSponsored ? <SponsoredPost postId={index} email={email} /> : null
+                  showSponsored ? <SponsoredPost postId={index} email={email} /> : <SponsoredPost postId={index} email={email} />
                 ) : (
                   <Post key={post.id} post={post} />
                 )

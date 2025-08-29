@@ -17,7 +17,7 @@ const SponsoredPost = ({ postId, email }) => {
     try {
       const response = await axios.get(
         //  `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts?$filter=POST eq '${postId}'`
-       `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts?$filter=POST eq '${postId}'`
+       `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPostsDBR?$filter=POST eq '${postId}'`
       );
       const totalLikes = response.data.value.reduce((sum, item) => sum + item.LIKES, 0);
       const existingComment = response.data.value.find(item => item.CUST1);
@@ -55,7 +55,7 @@ const SponsoredPost = ({ postId, email }) => {
       if (responseId) {
         await axios.patch(
           // `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${responseId})`,
-          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${responseId})`,
+          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPostsDBR(ID=${responseId})`,
           payload,
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -63,7 +63,7 @@ const SponsoredPost = ({ postId, email }) => {
         const newId = uuidv4();
         await axios.post(
           // 'https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
-        'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
+        'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPostsDBR',
           // { ID: newId, ...payload },
           payload ,
           { headers: { 'Content-Type': 'application/json' } }
@@ -84,7 +84,7 @@ const SponsoredPost = ({ postId, email }) => {
     try {
       // Fetch existing records for the same POST
       const res = await axios.get(
-        `${url}/InstagramPosts?$filter=POST eq '${postId}'`
+        `${url}/InstagramPostsDBR?$filter=POST eq '${postId}'`
       );
   
       // Check if there’s an entry with CUST1 = 'NA'
@@ -94,7 +94,7 @@ const SponsoredPost = ({ postId, email }) => {
         // Update CUST1 with new comment
         await axios.patch(
           // `https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${existing.ID})`,
-          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts(ID=${existing.ID})`,
+          `https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPostsDBR(ID=${existing.ID})`,
           { CUST1: newComment },
           { headers: { 'Content-Type': 'application/json' } }
         );
@@ -115,7 +115,7 @@ const SponsoredPost = ({ postId, email }) => {
   
         await axios.post(
           // 'https://cx-instagram-srv-responsible-cat-at.cfapps.us10-001.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
-          'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPosts',
+          'https://cx-solexp-live-applications-dbr-applications-lvie6cbi-apa720193.cfapps.eu10-004.hana.ondemand.com/odata/v4/service-catalog/InstagramPostsDBR',
           payload,
           { headers: { 'Content-Type': 'application/json' } }
         );
